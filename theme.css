@@ -1,0 +1,270 @@
+<html>
+<head>
+<meta charset="utf-8">
+<title>{Title}</title>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+<script src="http://code.jquery.com/jquery-1.11.2.min.js"></script>
+<link rel="stylesheet" href="https://s3-ap-southeast-1.amazonaws.com/asklr/ask.css">
+<style>
+.ball {
+	position: absolute;
+
+	height: 96px;
+	width: 96px;
+	border: 3px solid #FFF;
+	background: url({PortraitURL-96});
+	background-size: contain;
+	border-radius: 1000px;
+	transform: scale(0);
+	opacity: 0;
+	transition-duration: 0;
+	transition-timing-function: cubic-bezier(0.005, 0.950, 0.135, 1.205);
+}
+
+
+.halo {
+		position: absolute;
+		top: 18px;
+		left: 18px;
+		right: 18px;
+		bottom: 18px;
+		width:58px;
+		border-radius: 1000px;
+		background: rgba(255,255,255,.6);
+		transform: scale(0);
+}
+
+
+.ball-iki {
+		opacity: 1;
+		transform: none;
+		transition-duration: .3s;
+}
+
+.halo-iki {
+			opacity: 0;
+			transform: none;
+			transition-duration: .6s;
+			transition-delay: 1.2s;
+}
+</style>
+
+
+</head>
+<body>
+<div id="navbar">
+<div class="menuCenter">
+    <div id="logo"></div>
+    <a href="http://asklr.me" id="download">Download Theme</a>
+</div>
+</div>
+
+<div id="moneyasdept"></div>
+
+<div id="wrapper">
+    
+    
+    <div id="profile-head">
+    <div id="left-bar">
+        
+        
+        <div class="ball">
+        <div class="halo"></div>
+        </div>
+
+
+
+        <p id="mytitle">{Title}</p>
+        <p id="myurl">{BlogURL}</p>
+        <p id="mydescription">{Description}</p>
+        
+    </div> 
+    
+    <div id="right-bar">
+        <button id="follow-btn">+ Follow</button>
+        
+    </div>
+    
+    </div>
+<div id="askbox">
+<p><iframe id="ask_form" frameborder="0" scrolling="no" width="100%" height="190" src="http://www.tumblr.com/ask_form/yasak.tumblr.com" style="background-color:transparent; overflow:hidden;" ></iframe><!--[if IE]><script type="text/javascript">document.getElementById('ask_form').allowTransparency=true;</script><![endif]--></p>
+
+</div> 
+
+<div id="all-posts">
+    
+  {block:Posts}
+  
+  
+{block:Answer}
+
+<div class="answr">
+
+
+<img style="display:inline;" class="img-circle" src="{AskerPortraitURL-30}"> <p style="display:inline;">{Asker} : </p>
+
+
+<p class="user-question">{Question}</p>
+  
+<div class="user-answer">
+
+{Answer} 
+
+<p class="time-ago">{TimeAgo} & {NoteCountWithLabel}</p>
+
+  
+</div>
+  
+<hr>
+
+<div style="width:80px;height:20px;position:absolute;margin-left:610px;margin-top:-60px;">
+    <div style="float:left;">{LikeButton size="20"}</div>
+   <div style="float:right;"> {ReblogButton size="20"}</div>
+    <div style="clear:both;"></div>
+    
+    
+</div>
+
+
+</div>
+
+  
+
+{/block:Answer}
+
+
+
+{block:Text} 
+
+
+<div class="answr">
+
+<p class="user-question">{Title}</p>
+  
+<div class="user-answer">
+
+{Body} 
+
+<p class="time-ago">{TimeAgo} & {NoteCountWithLabel}</p>
+
+  
+</div>
+  
+<hr>
+
+<div style="width:80px;height:20px;position:absolute;margin-left:610px;margin-top:-60px;">
+    <div style="float:left;">{LikeButton size="20"}</div>
+   <div style="float:right;"> {ReblogButton size="20"}</div>
+    <div style="clear:both;"></div>
+    
+    
+</div></div>
+{/block:Text}
+
+
+
+
+
+{block:Photo}
+
+
+<div class="answr">
+
+<img src="{PhotoURL-500}" >
+  
+<div class="user-answer">
+
+{Caption}
+
+<p class="time-ago">{TimeAgo} & {NoteCountWithLabel}</p>
+
+  
+</div>
+  
+<hr>
+
+<div style="width:80px;height:20px;position:absolute;margin-left:610px;margin-top:-60px;">
+    <div style="float:left;">{LikeButton size="20"}</div>
+   <div style="float:right;"> {ReblogButton size="20"}</div>
+    <div style="clear:both;"></div>
+    
+    
+</div></div>
+
+
+
+{/block:Photo}
+
+
+
+
+
+  
+{/block:Posts}  
+    
+    
+</div>
+    
+    
+    
+<center>
+{block:Pagination}
+
+{block:PreviousPage}
+
+ <a href="{PreviousPage}" class="btn btn-info" style="background-color:#529ECC;color:#A9CFE6;width:220px">Previous</a>  
+
+{/block:PreviousPage}
+
+
+{block:NextPage}
+
+
+ <a href="{NextPage}" class="btn btn-info" style="background-color:#529ECC;color:#A9CFE6;width:220px;">Next</a> 
+
+
+{/block:NextPage}
+
+
+
+{/block:Pagination}
+ 
+  </center>
+</div>
+
+<script type="text/javascript">
+$(document).ready(function(){
+var burl = "{BlogURL}";
+    var x = burl.split("://");
+    console.log(x[1]);
+    curl = "http://www.tumblr.com/ask_form/"+x[1];
+    console.log(curl);
+    $("#ask_form").attr("src", curl);
+
+    
+    
+    
+    
+    
+    setTimeout(function(){ 
+$( ".ball" ).toggleClass( "ball-iki", 3000 );
+$( ".halo" ).toggleClass( "halo-iki", 2000 );
+}, 500);
+});
+    
+
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-44533585-5', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+ 
+    
+</body>
+</html>
